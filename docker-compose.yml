@@ -11,7 +11,7 @@ services:
     volumes:
     - ./pg.sql:/docker-entrypoint-initdb.d/pg.sql
   nodejs:
-    image: neuralegion/brokencrystals
+    build: .
     container_name: nodejs
     restart: unless-stopped
     logging:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
   proxy:
-    image: neuralegion/brokencrystals-client
+    build: ./public
     restart: always
     environment:
       CERTBOT_EMAIL: "anatol@neuralegion.com"
